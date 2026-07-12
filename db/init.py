@@ -1,9 +1,9 @@
 from sqlmodel import Session, SQLModel
-from scripts.models import Product
+from scripts.models import Product, Order
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-name = "storefront"
+name = "postgres"
 uri = f"postgresql+psycopg://user:password@localhost:5432/{name}"
 engine = create_engine(uri)
 
@@ -12,5 +12,7 @@ HostSession = sessionmaker(bind=engine)
 def init_db():
     SQLModel.metadata.create_all(bind=engine)
 
-init_db()
+
+if __name__ == '__main__':
+    init_db()
 
